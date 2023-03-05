@@ -14,6 +14,14 @@ app.use(express.json());
 
 app.use('/api/v1', mainRouter);
 
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static(path.join(__dirname, '/public')));
+} else {
+	app.get('/', (req, res) => {
+		res.send('Hello WORLD');
+	});
+}
+
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
@@ -30,3 +38,7 @@ const start = async () => {
 };
 
 start();
+
+module.exports = (req, res) => {
+	app(req, res);
+};
