@@ -3,6 +3,7 @@ require('express-async-errors');
 
 const express = require('express');
 const app = express();
+const path = require('path');
 
 const mainRouter = require('./routes/main');
 const notFoundMiddleware = require('./middleware/not-found');
